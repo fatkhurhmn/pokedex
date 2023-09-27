@@ -1,6 +1,7 @@
 package com.muffar.pokedex.di
 
 import com.muffar.pokedex.domain.repository.PokemonRepository
+import com.muffar.pokedex.domain.usecases.GetPokemonDetail
 import com.muffar.pokedex.domain.usecases.GetPokemonList
 import com.muffar.pokedex.domain.usecases.PokemonUseCases
 import com.muffar.pokedex.domain.usecases.SearchPokemon
@@ -18,6 +19,7 @@ object AppModule {
     ): PokemonUseCases =
         PokemonUseCases(
             getPokemonList = GetPokemonList(pokemonRepository),
-            searchPokemon = SearchPokemon(pokemonRepository)
+            searchPokemon = SearchPokemon(pokemonRepository),
+            getPokemonDetail = GetPokemonDetail(pokemonRepository)
         )
 }

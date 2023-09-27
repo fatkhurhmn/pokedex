@@ -5,13 +5,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.muffar.pokedex.domain.model.Pokemon
 import com.muffar.pokedex.presentation.home.components.PokemonListContent
 import com.muffar.pokedex.ui.common.SearchScaffold
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    navigate: () -> Unit,
+    navigate: (Pokemon) -> Unit,
     state: HomeState,
     onEvent: (HomeEvent) -> Unit,
 ) {
@@ -21,7 +22,7 @@ fun HomeScreen(
             if (it.isNotEmpty()) {
                 onEvent(HomeEvent.UpdateSearchQuery(it))
                 onEvent(HomeEvent.SearchPokemon)
-            }else{
+            } else {
                 onEvent(HomeEvent.GetPokemons)
             }
         },
@@ -32,7 +33,12 @@ fun HomeScreen(
                 .fillMaxSize()
         ) {
             state.pokemon?.collectAsLazyPagingItems()?.let {
-                PokemonListContent(pokemons = it, onClick = { navigate() })
+                PokemonListContent(
+                    pokemons = it,
+                    onClick = { poke ->
+                        navigate(poke)
+                    }
+                )
             }
         }
     }

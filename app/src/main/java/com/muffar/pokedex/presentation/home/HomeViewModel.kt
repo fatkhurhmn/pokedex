@@ -20,23 +20,22 @@ class HomeViewModel @Inject constructor(
     init {
         onEvent(HomeEvent.GetPokemons)
     }
+
     fun onEvent(event: HomeEvent) {
         when (event) {
             is HomeEvent.GetPokemons -> getPokemons()
             is HomeEvent.SearchPokemon -> searchPokemon()
-            is HomeEvent.UpdateSearchQuery->{
+            is HomeEvent.UpdateSearchQuery ->
                 _state.value = _state.value.copy(searchQuery = event.query)
-            }
         }
     }
 
-
-    fun getPokemons() {
+    private fun getPokemons() {
         val pokemons = pokemonUseCases.getPokemonList().cachedIn(viewModelScope)
         _state.value = state.value.copy(pokemon = pokemons)
     }
 
-    fun searchPokemon() {
+    private fun searchPokemon() {
         val pokemons =
             pokemonUseCases.searchPokemon(_state.value.searchQuery).cachedIn(viewModelScope)
         _state.value = _state.value.copy(pokemon = pokemons)
