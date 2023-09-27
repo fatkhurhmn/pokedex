@@ -5,5 +5,5 @@ import com.muffar.pokedex.domain.model.Pokemon
 import kotlinx.coroutines.flow.Flow
 
 interface PokemonRepository {
-    suspend fun getPokemonList(): Flow<PagingData<Pokemon>>
+    fun getPokemonList(): Flow<PagingData<Pokemon>>
 }

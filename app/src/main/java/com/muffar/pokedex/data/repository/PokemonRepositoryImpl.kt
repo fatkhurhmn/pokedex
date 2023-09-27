@@ -13,7 +13,7 @@ import javax.inject.Inject
 class PokemonRepositoryImpl @Inject constructor(
     private val pokemonApi: PokemonApi,
 ) : PokemonRepository {
-    override suspend fun getPokemonList(): Flow<PagingData<Pokemon>> {
+    override fun getPokemonList(): Flow<PagingData<Pokemon>> {
         return Pager(
             config = PagingConfig(pageSize = 20),
             pagingSourceFactory = {

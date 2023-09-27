@@ -90,6 +90,9 @@ dependencies {
     implementation("androidx.paging:paging-runtime:3.2.1")
     implementation("androidx.paging:paging-compose:3.2.1")
 
+    //shimmer
+    implementation("com.valentinilk.shimmer:compose-shimmer:1.0.3")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

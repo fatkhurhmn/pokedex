@@ -17,13 +17,13 @@ class PokemonPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Pokemon> {
         return try {
-            val page = params.key ?: 20
+            val page = params.key ?: 1
             val response = pokemonApi.getPokemonList(page = page)
             val data = response.results.map { DataMapper.mapPokemonResponseToPokemon(it) }
             LoadResult.Page(
                 data = data,
-                prevKey = if (page == 1) null else page - 20,
-                nextKey = if (data.isEmpty()) null else page + 20
+                prevKey = if (page == 1) null else page - 1,
+                nextKey = if (data.isEmpty()) null else page + 1
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
