@@ -6,6 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 val localPropertiesFile = rootProject.file("local.properties")
@@ -92,6 +93,12 @@ dependencies {
 
     //shimmer
     implementation("com.valentinilk.shimmer:compose-shimmer:1.0.3")
+
+    //room
+    implementation("androidx.room:room-runtime:2.5.2")
+    implementation("androidx.room:room-ktx:2.5.2")
+    implementation("androidx.room:room-paging:2.4.0-rc01")
+    ksp("androidx.room:room-compiler:2.5.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

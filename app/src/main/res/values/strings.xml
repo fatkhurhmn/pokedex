@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="search_hint_appbar">Cari</string>
 </resources>

@@ -6,7 +6,7 @@ import com.muffar.pokedex.domain.model.Pokemon
 object DataMapper {
     fun mapPokemonResponseToPokemon(value: PokemonResponse): Pokemon {
         val parts = value.url.split("/")
-        val id = parts[6]
+        val id = parts[6].toInt()
         return Pokemon(
             id = id,
             name = value.name

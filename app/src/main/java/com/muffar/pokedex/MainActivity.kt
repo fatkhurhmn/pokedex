@@ -8,7 +8,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.muffar.pokedex.presentation.home.HomeScreen
+import com.muffar.pokedex.presentation.home.HomeViewModel
 import com.muffar.pokedex.ui.theme.PokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,11 +21,16 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             PokedexTheme {
+                val viewModel: HomeViewModel = hiltViewModel()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen(navigate = { /*TODO*/ })
+                    HomeScreen(
+                        onEvent = viewModel::onEvent,
+                        state = viewModel.state.value,
+                        navigate = {}
+                    )
                 }
             }
         }
